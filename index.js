@@ -19,13 +19,19 @@ exports.reject = function (rule) {
     newRule(rule);
 }
 
-exports.list = function(chain, cb) {
+exports.list = function(chain, table, cb) {
+    
+    if (!cb && typeof table == "function") {
+        cb=table;
+        table=null;
+    }
     var rule = {
         list : true,
         chain : chain,
         action : '-L',
         sudo : true
     };
+    if (table) rule.table=table;
 
     lazy(iptables(rule).stdout)
         .lines
@@ -75,6 +81,8 @@ function iptables (rule) {
 
 function iptablesArgs (rule) {
     var args = [];
+
+    if (rule.table) args = args.concat(["-t", rule.table]);
 
     if (!rule.chain) rule.chain = 'INPUT';
 
