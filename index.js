@@ -43,15 +43,16 @@ exports.list = function(chain, table, cb) {
             var fields = line.trim().split(/\s+/, 9);
             return {
                 parsed : {
-                    packets : fields[0],
-                    bytes : fields[1],
-                    target : fields[2],
-                    protocol : fields[3],
-                    opt : fields[4],
-                    in : fields[5],
-                    out : fields[6],
-                    src : fields[7],
-                    dst : fields[8]
+                    line : fields[0],
+                    packets : fields[1],
+                    bytes : fields[2],
+                    target : fields[3],
+                    protocol : fields[4],
+                    opt : fields[5],
+                    in : fields[6],
+                    out : fields[7],
+                    src : fields[8],
+                    dst : fields[9]
                 },
                 raw : line.trim()
             };
