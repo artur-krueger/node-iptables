@@ -29,7 +29,8 @@ exports.list = function(chain, table, cb) {
         list : true,
         chain : chain,
         action : '-L',
-        sudo : true
+        sudo : true,
+        params: ['--line-numbers']
     };
     if (table) rule.table=table;
 
